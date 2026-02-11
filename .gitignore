@@ -10,6 +10,10 @@ lerna-debug.log*
 # Dependency directories
 node_modules/
 jspm_packages/
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
 
 # Build outputs
 dist/
@@ -52,3 +56,10 @@ desktop.ini
 # Trae/Vite/Other
 .vite/
 .turbo/
+
+# Deployment
+.vercel/
+.netlify/
+.serverless/
+.output/
+
