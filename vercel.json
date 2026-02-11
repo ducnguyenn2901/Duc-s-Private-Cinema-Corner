@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/ophim1/:path*",
+      "destination": "https://ophim1.com/v1/api/:path*"
     }
   ]
 }
