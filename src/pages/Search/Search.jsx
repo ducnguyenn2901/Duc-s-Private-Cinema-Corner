@@ -31,15 +31,15 @@ const Search = () => {
         setLoading(true);
         const response = await movieApi.searchMovies(keyword, page);
         
-        if (response.data.status) {
+        if (response.data?.status) {
           // Update global CDN
-          if (response.data.data.APP_DOMAIN_CDN_IMAGE) {
+          if (response.data?.data?.APP_DOMAIN_CDN_IMAGE) {
             movieApi.cdn = response.data.data.APP_DOMAIN_CDN_IMAGE;
           }
 
-          const items = response.data.data.items;
+          const items = response.data?.data?.items || [];
           setMovies(items);
-          setPagination(response.data.data.params.pagination);
+          setPagination(response.data?.data?.params?.pagination || null);
 
           // Apply client-side filtering
           let result = items;

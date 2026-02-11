@@ -33,17 +33,17 @@ const Home = () => {
         ]);
 
         // Cập nhật CDN global để các component con sử dụng
-        if (homeRes.data.data.APP_DOMAIN_CDN_IMAGE) {
+        if (homeRes.data?.data?.APP_DOMAIN_CDN_IMAGE) {
           movieApi.cdn = homeRes.data.data.APP_DOMAIN_CDN_IMAGE;
         }
 
         setData({
-          heroMovies: homeRes.data.data.items.slice(0, 5),
-          newMovies: newRes.data.data.items.slice(0, 12),
-          series: seriesRes.data.data.items.slice(0, 12),
-          singleMovies: singleRes.data.data.items.slice(0, 12),
-          cartoons: cartoonsRes.data.data.items.slice(0, 12),
-          cdnDomain: homeRes.data.data.APP_DOMAIN_CDN_IMAGE,
+          heroMovies: homeRes.data?.data?.items?.slice(0, 5) || [],
+          newMovies: newRes.data?.data?.items?.slice(0, 12) || [],
+          series: seriesRes.data?.data?.items?.slice(0, 12) || [],
+          singleMovies: singleRes.data?.data?.items?.slice(0, 12) || [],
+          cartoons: cartoonsRes.data?.data?.items?.slice(0, 12) || [],
+          cdnDomain: homeRes.data?.data?.APP_DOMAIN_CDN_IMAGE || '',
         });
       } catch (err) {
         console.error('Error fetching home data:', err);

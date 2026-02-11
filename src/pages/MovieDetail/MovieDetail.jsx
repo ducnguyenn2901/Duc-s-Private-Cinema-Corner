@@ -27,9 +27,9 @@ const MovieDetail = () => {
           movieApi.getMovieImages(slug)
         ]);
         
-        if (detailRes.status === 'fulfilled' && detailRes.value.data.status) {
+        if (detailRes.status === 'fulfilled' && detailRes.value.data?.status) {
                 // Cập nhật CDN global
-                if (detailRes.value.data.data.APP_DOMAIN_CDN_IMAGE) {
+                if (detailRes.value.data?.data?.APP_DOMAIN_CDN_IMAGE) {
                   movieApi.cdn = detailRes.value.data.data.APP_DOMAIN_CDN_IMAGE;
                 }
                 setDetailData(detailRes.value.data.data);
@@ -37,14 +37,14 @@ const MovieDetail = () => {
           setMovie(movieData);
           setEpisodes(detailRes.value.data.data.items || []);
           
-          if (imagesRes.status === 'fulfilled' && imagesRes.value.data.status) {
+          if (imagesRes.status === 'fulfilled' && imagesRes.value.data?.status) {
             setImagesData(imagesRes.value.data.data);
           }
           
           // Fetch related movies (same category or genre)
-          if (movieData.category?.[0]?.slug) {
+          if (movieData?.category?.[0]?.slug) {
             const relatedRes = await movieApi.getMoviesByGenre(movieData.category[0].slug, 1);
-            setRelatedMovies(relatedRes.data.data.items.filter(m => m.slug !== slug).slice(0, 6));
+            setRelatedMovies(relatedRes.data?.data?.items?.filter(m => m.slug !== slug).slice(0, 6) || []);
           }
         } else {
           setError('Không tìm thấy thông tin phim.');

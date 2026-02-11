@@ -73,17 +73,17 @@ const Category = ({ type = 'danh-sach' }) => {
 
         const response = await fetchPromise;
 
-        if (response.data.status) {
+        if (response.data?.status) {
           // Cập nhật CDN global
-          if (response.data.data.APP_DOMAIN_CDN_IMAGE) {
+          if (response.data?.data?.APP_DOMAIN_CDN_IMAGE) {
             movieApi.cdn = response.data.data.APP_DOMAIN_CDN_IMAGE;
           }
           
-          const items = response.data.data.items;
+          const items = response.data?.data?.items || [];
           setMovies(items);
-          setPagination(response.data.data.params.pagination);
+          setPagination(response.data?.data?.params?.pagination || null);
           // Build a descriptive title if filters are active
-          let pageTitle = response.data.data.titlePage || 'Danh sách phim';
+          let pageTitle = response.data?.data?.titlePage || 'Danh sách phim';
           
           if (genreFilter || countryFilter || yearFilter || (categoryFilter && categoryFilter !== 'all')) {
             const parts = [];
