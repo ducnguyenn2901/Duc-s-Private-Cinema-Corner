@@ -198,9 +198,9 @@ const MovieFilter = ({ currentType, currentSlug, variant = 'default' }) => {
                 <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
                   <Filter size={20} className="text-primary" />
                 </div>
-                <div>
+                {/* <div>
                   <h3 className="font-black text-white uppercase tracking-tight">Bộ lọc nâng cao</h3>
-                </div>
+                </div> */}
               </div>
               <button 
                 onClick={() => setIsExpanded(false)}
