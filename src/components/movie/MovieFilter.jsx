@@ -200,7 +200,6 @@ const MovieFilter = ({ currentType, currentSlug, variant = 'default' }) => {
                 </div>
                 <div>
                   <h3 className="font-black text-white uppercase tracking-tight">Bộ lọc nâng cao</h3>
-                  <p className="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Tìm kiếm phim chuẩn xác</p>
                 </div>
               </div>
               <button 

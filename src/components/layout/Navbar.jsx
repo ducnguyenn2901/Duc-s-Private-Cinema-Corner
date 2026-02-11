@@ -165,7 +165,7 @@ const Navbar = () => {
           <div className="grid grid-cols-4 gap-2">
             <Link to="/" className="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-all active:scale-95">
               <Home size={20} />
-              <span className="text-[10px] font-bold uppercase tracking-tight">Trang chủ</span>
+              <span className="text-[10px] font-bold uppercase tracking-tight">Home</span>
             </Link>
             <Link to="/danh-sach/phim-bo" className="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-all active:scale-95">
               <Tv size={20} />
