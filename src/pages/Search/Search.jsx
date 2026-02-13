@@ -42,7 +42,7 @@ const Search = () => {
           setPagination(response.data?.data?.params?.pagination || null);
 
           // Apply client-side filtering
-          let result = items;
+          let result = items.filter(m => !m.category?.some(c => c.slug === 'phim-18'));
           
           if (genreFilter) {
             result = result.filter(m => m.category?.some(c => c.slug === genreFilter));

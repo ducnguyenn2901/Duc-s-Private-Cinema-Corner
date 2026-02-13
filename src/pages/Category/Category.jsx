@@ -109,7 +109,7 @@ const Category = ({ type = 'danh-sach' }) => {
           setTitle(pageTitle);
 
           // Apply client-side filtering for other parameters
-          let result = items;
+          let result = items.filter(m => !m.category?.some(c => c.slug === 'phim-18'));
           
           // Only filter client-side if the field was NOT used as the primary fetch key
           if (genreFilter && primaryFilter !== 'genre') {

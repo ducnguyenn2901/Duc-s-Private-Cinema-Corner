@@ -37,12 +37,18 @@ const Home = () => {
           movieApi.cdn = homeRes.data.data.APP_DOMAIN_CDN_IMAGE;
         }
 
+        const filter18Plus = (movies) => {
+          return movies?.filter(movie => 
+            !movie.category?.some(cat => cat.slug === 'phim-18')
+          ) || [];
+        };
+
         setData({
-          heroMovies: homeRes.data?.data?.items?.slice(0, 5) || [],
-          newMovies: newRes.data?.data?.items?.slice(0, 12) || [],
-          series: seriesRes.data?.data?.items?.slice(0, 12) || [],
-          singleMovies: singleRes.data?.data?.items?.slice(0, 12) || [],
-          cartoons: cartoonsRes.data?.data?.items?.slice(0, 12) || [],
+          heroMovies: filter18Plus(homeRes.data?.data?.items)?.slice(0, 5) || [],
+          newMovies: filter18Plus(newRes.data?.data?.items)?.slice(0, 12) || [],
+          series: filter18Plus(seriesRes.data?.data?.items)?.slice(0, 12) || [],
+          singleMovies: filter18Plus(singleRes.data?.data?.items)?.slice(0, 12) || [],
+          cartoons: filter18Plus(cartoonsRes.data?.data?.items)?.slice(0, 12) || [],
           cdnDomain: homeRes.data?.data?.APP_DOMAIN_CDN_IMAGE || '',
         });
       } catch (err) {

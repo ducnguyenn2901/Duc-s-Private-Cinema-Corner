@@ -11,7 +11,9 @@ export const fetchInitialData = createAsyncThunk(
         movieApi.getYears(),
       ]);
 
-      const genres = genresRes.status === 'fulfilled' ? genresRes.value.data.data.items : [];
+      const genres = genresRes.status === 'fulfilled' 
+        ? genresRes.value.data.data.items.filter(item => item.slug !== 'phim-18') 
+        : [];
       const countries = countriesRes.status === 'fulfilled' ? countriesRes.value.data.data.items : [];
       
       // Handle years (if API fails or empty, generate fallback)

@@ -20,7 +20,7 @@ const FilterSelect = ({ label, icon: Icon, options, value, onChange, placeholder
   const selectedOption = options.find(opt => opt.slug === value || opt.name === value);
 
   return (
-    <div className="relative flex-1 min-w-[140px]" ref={dropdownRef}>
+    <div className="relative w-full" ref={dropdownRef}>
       <label className="block text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-1.5 ml-1">
         {label}
       </label>
@@ -42,7 +42,7 @@ const FilterSelect = ({ label, icon: Icon, options, value, onChange, placeholder
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl z-[100] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl z-[500] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           <div className="max-h-[250px] overflow-y-auto custom-scrollbar py-2">
             {options.map((opt) => (
               <button
@@ -120,7 +120,7 @@ const MovieFilter = ({ currentType, currentSlug, variant = 'default' }) => {
   };
 
   const filterContent = (isCompact = false) => (
-    <div className={`${isCompact ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4' : 'flex flex-wrap items-center gap-6'}`}>
+    <div className={`grid gap-4 ${isCompact ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'}`}>
       <FilterSelect 
         label="Danh mục"
         icon={LayoutGrid}
@@ -233,7 +233,7 @@ const MovieFilter = ({ currentType, currentSlug, variant = 'default' }) => {
   }
 
   return (
-    <div className="bg-zinc-900/30 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-6 mb-10">
+    <div className="bg-zinc-900/30 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-4 md:p-6 mb-10">
       {filterContent(false)}
     </div>
   );
