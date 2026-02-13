@@ -14,7 +14,6 @@ yarn.lock
 pnpm-lock.yaml
 bun.lockb
 
-
 # Build outputs
 dist/
 dist-ssr/
@@ -63,3 +62,8 @@ desktop.ini
 .serverless/
 .output/
 
+# Common backups and temporary files
+*.bak
+*.tmp
+*.temp
+~*

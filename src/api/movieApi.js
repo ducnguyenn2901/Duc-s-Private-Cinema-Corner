@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'https://ophim1.com/v1/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-let globalCDN = 'https://img.ophim.live';
+let globalCDN = import.meta.env.VITE_IMG_URL;
 
 export const movieApi = {
   // Store global CDN domain
@@ -39,14 +39,9 @@ export const movieApi = {
     if (cleanPath.startsWith(fullPrefix)) {
       cleanPath = cleanPath.substring(fullPrefix.length);
     }
-    
-    // 1. Lấy từ responseData nếu có (ưu tiên nhất)
-    // 2. Lấy từ global movieApi.cdn nếu đã được cập nhật
-    // 3. Mặc định là https://img.ophim.live
     const cdn = responseData?.APP_DOMAIN_CDN_IMAGE || 
                 responseData?.data?.APP_DOMAIN_CDN_IMAGE || 
-                movieApi.cdn ||
-                'https://img.ophim.live';
+                movieApi.cdn 
                 
     // Đảm bảo cdn không kết thúc bằng / và prefix không bắt đầu bằng /
     const baseCDN = cdn.endsWith('/') ? cdn.slice(0, -1) : cdn;

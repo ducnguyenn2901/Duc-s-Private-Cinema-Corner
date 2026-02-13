@@ -8,6 +8,7 @@ import MovieDetail from './pages/MovieDetail/MovieDetail';
 import Category from './pages/Category/Category';
 import Search from './pages/Search/Search';
 import Watch from './pages/Watch/Watch';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchInitialData } from './store/store';
@@ -35,6 +36,7 @@ function AppContent() {
         </Routes>
       </main>
       <Footer />
+      <SpeedInsights />
     </div>
   );
 }
