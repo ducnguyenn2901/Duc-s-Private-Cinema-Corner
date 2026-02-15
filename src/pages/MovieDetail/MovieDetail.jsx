@@ -28,12 +28,8 @@ const MovieDetail = () => {
         ]);
         
         if (detailRes.status === 'fulfilled' && detailRes.value.data?.status) {
-                // Cập nhật CDN global
-                if (detailRes.value.data?.data?.APP_DOMAIN_CDN_IMAGE) {
-                  movieApi.cdn = detailRes.value.data.data.APP_DOMAIN_CDN_IMAGE;
-                }
-                setDetailData(detailRes.value.data.data);
-                const movieData = detailRes.value.data.data.item;
+          setDetailData(detailRes.value.data.data);
+          const movieData = detailRes.value.data.data.item;
           setMovie(movieData);
           setEpisodes(detailRes.value.data.data.items || []);
           

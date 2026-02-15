@@ -74,11 +74,6 @@ const Category = ({ type = 'danh-sach' }) => {
         const response = await fetchPromise;
 
         if (response.data?.status) {
-          // Cập nhật CDN global
-          if (response.data?.data?.APP_DOMAIN_CDN_IMAGE) {
-            movieApi.cdn = response.data.data.APP_DOMAIN_CDN_IMAGE;
-          }
-          
           const items = response.data?.data?.items || [];
           setMovies(items);
           setPagination(response.data?.data?.params?.pagination || null);

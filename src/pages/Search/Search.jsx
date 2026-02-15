@@ -32,11 +32,6 @@ const Search = () => {
         const response = await movieApi.searchMovies(keyword, page);
         
         if (response.data?.status) {
-          // Update global CDN
-          if (response.data?.data?.APP_DOMAIN_CDN_IMAGE) {
-            movieApi.cdn = response.data.data.APP_DOMAIN_CDN_IMAGE;
-          }
-
           const items = response.data?.data?.items || [];
           setMovies(items);
           setPagination(response.data?.data?.params?.pagination || null);

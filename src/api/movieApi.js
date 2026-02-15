@@ -1,16 +1,15 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://ophim1.com/v1/api',
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-let globalCDN = import.meta.env.VITE_IMG_URL || 'https://img.ophim.live';
+let globalCDN = '/img';
 
 export const movieApi = {
-  // Store global CDN domain
   get cdn() { return globalCDN; },
   set cdn(value) { globalCDN = value; },
 
@@ -25,34 +24,29 @@ export const movieApi = {
   searchMovies: (keyword, page = 1) => apiClient.get(`/tim-kiem?keyword=${keyword}&page=${page}`),
   getMovieDetail: (slug) => apiClient.get(`/phim/${slug}`),
   getMovieImages: (slug) => apiClient.get(`/phim/${slug}/images`),
-  // Helper to get full image URL from relative path and API response data
-  getImageUrl: (path, responseData) => {
+  // Helper to get full image URL from relative path or absolute URL
+  getImageUrl: (path, _responseData) => {
     if (!path) return '';
-    // Nếu path đã là URL tuyệt đối thì trả về luôn
-    if (path.startsWith('http')) return path;
-    
-    // Loại bỏ slash ở đầu nếu có
-    let cleanPath = path.startsWith('/') ? path.substring(1) : path;
-    
-    // Nếu path có dạng /uploads/movies/... thì lấy phần sau
-    const fullPrefix = 'uploads/movies/';
-    if (cleanPath.startsWith(fullPrefix)) {
-      cleanPath = cleanPath.substring(fullPrefix.length);
+
+    const prefix = 'uploads/movies/';
+    let cleanPath = String(path).trim();
+
+    const ophimHost = ['img', 'ophim', 'live'].join('.');
+    const idx = cleanPath.indexOf(prefix);
+    if (idx !== -1) {
+      cleanPath = cleanPath.substring(idx + prefix.length);
+    } else {
+      if (/^https?:\/\//.test(cleanPath) && !cleanPath.includes(ophimHost)) {
+        return cleanPath;
+      }
+      cleanPath = cleanPath.replace(/^https?:\/\//, '').replace(/^\/+/, '');
     }
-    
-    // 1. Lấy từ responseData nếu có (ưu tiên nhất)
-    // 2. Lấy từ global movieApi.cdn nếu đã được cập nhật
-    // 3. Mặc định là https://img.ophim.live
-    const cdn = responseData?.APP_DOMAIN_CDN_IMAGE || 
-                responseData?.data?.APP_DOMAIN_CDN_IMAGE || 
-                movieApi.cdn ||
-                'https://img.ophim.live';
-                
-    // Đảm bảo cdn không kết thúc bằng / và prefix không bắt đầu bằng /
-    const baseCDN = cdn.endsWith('/') ? cdn.slice(0, -1) : cdn;
-    return `${baseCDN}/${fullPrefix}${cleanPath}`;
+
+    const base = movieApi.cdn || '/img';
+    const baseClean = base.endsWith('/') ? base.slice(0, -1) : base;
+
+    return `${baseClean}/${prefix}${cleanPath}`;
   }
 };
 
 export default apiClient;
-

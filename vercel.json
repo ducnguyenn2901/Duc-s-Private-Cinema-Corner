@@ -1,12 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/api/:path*",
+      "destination": "https://ophim1.com/v1/api/:path*"
     },
     {
-      "source": "/ophim1/:path*",
-      "destination": "https://ophim1.com/v1/api/:path*"
+      "source": "/img/:path*",
+      "destination": "https://img.ophim.live/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }

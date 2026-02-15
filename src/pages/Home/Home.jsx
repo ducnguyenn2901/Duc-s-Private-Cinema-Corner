@@ -32,11 +32,6 @@ const Home = () => {
           movieApi.getList('hoat-hinh', 1),
         ]);
 
-        // Cập nhật CDN global để các component con sử dụng
-        if (homeRes.data?.data?.APP_DOMAIN_CDN_IMAGE) {
-          movieApi.cdn = homeRes.data.data.APP_DOMAIN_CDN_IMAGE;
-        }
-
         const filter18Plus = (movies) => {
           return movies?.filter(movie => 
             !movie.category?.some(cat => cat.slug === 'phim-18')

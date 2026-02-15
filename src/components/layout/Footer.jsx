@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
           
           <div className="text-white font-bold text-lg md:text-xl">
-            Copyright © 2026 Duc Nguyen
+            Copyright © 2025 Duc Nguyen
           </div>
         </div>
       </div>
