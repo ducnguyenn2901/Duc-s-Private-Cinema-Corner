@@ -29,7 +29,7 @@ const Home = () => {
           movieApi.getList('phim-moi-cap-nhat', 2),
           movieApi.getList('phim-bo', 1),
           movieApi.getList('phim-le', 1),
-          movieApi.getList('hoat-hinh', 1),
+          movieApi.getMoviesByGenre('hoat-hinh', 1),
         ]);
 
         const filter18Plus = (movies) => {
@@ -92,7 +92,7 @@ const Home = () => {
           {loading ? <MovieGridSkeleton count={6} /> : <MovieGrid movies={data.singleMovies} />}
         </Section>
 
-        <Section title="Hoạt hình" viewMoreLink="/danh-sach/hoat-hinh">
+        <Section title="Hoạt hình" viewMoreLink="/the-loai/hoat-hinh">
           {loading ? <MovieGridSkeleton count={6} /> : <MovieGrid movies={data.cartoons} />}
         </Section>
       </div>

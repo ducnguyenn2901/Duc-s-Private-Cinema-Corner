@@ -6,15 +6,10 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://ophim1.com',
+        target: 'https://vsmov.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/v1/api'),
       },
-      '/img': {
-        target: 'https://img.ophim.live',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/img/, ''),
-      },
+
     },
   },
 })

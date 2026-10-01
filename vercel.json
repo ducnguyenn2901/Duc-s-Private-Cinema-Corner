@@ -2,11 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://ophim1.com/v1/api/:path*"
-    },
-    {
-      "source": "/img/:path*",
-      "destination": "https://img.ophim.live/:path*"
+      "destination": "https://vsmov.com/api/:path*"
     },
     {
       "source": "/(.*)",
