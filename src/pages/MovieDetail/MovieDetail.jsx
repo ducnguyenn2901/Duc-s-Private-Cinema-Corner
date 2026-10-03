@@ -127,13 +127,22 @@ const MovieDetail = () => {
                 }}
               />
             </div>
-            <button 
-              onClick={() => navigate(`/xem/${movie.slug}`)}
-              className="w-full mt-4 bg-primary hover:bg-blue-600 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all"
-            >
-              <Play fill="currentColor" size={20} />
-              XEM PHIM
-            </button>
+            {movie.episodes?.[0]?.server_data?.length > 0 ? (
+              <button 
+                onClick={() => navigate(`/xem/${movie.slug}`)}
+                className="w-full mt-4 bg-primary hover:bg-blue-600 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all"
+              >
+                <Play fill="currentColor" size={20} />
+                XEM PHIM
+              </button>
+            ) : (
+              <button 
+                disabled
+                className="w-full mt-4 bg-zinc-800 text-zinc-500 py-3 rounded-lg font-bold flex items-center justify-center gap-2 cursor-not-allowed"
+              >
+                ĐANG CẬP NHẬT
+              </button>
+            )}
           </div>
 
           {/* Details */}
