@@ -18,7 +18,10 @@ apiClient.interceptors.response.use(
           data: {
             status: true,
             data: {
-              item: resData.movie,
+              item: {
+                ...resData.movie,
+                episodes: resData.episodes
+              },
               items: resData.episodes
             }
           }
